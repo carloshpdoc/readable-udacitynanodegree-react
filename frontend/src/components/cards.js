@@ -7,26 +7,32 @@ class Cards extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      posts: []
+      posts: [],
+      post: {}
     }
   }
 
   componentDidMount () {
-    API.getAllpost().then((data) => {
-      console.log('data: ', data)
-      this.setState({posts: data})
-    })
+    if (this.props.category) {
+      API.getAllcategoriesPost(this.props.category).then((data) => {
+        this.setState({posts: data})
+      })
+    } else {
+      API.getAllpost().then((data) => {
+        this.setState({posts: data})
+      })
+    }
   }
 
   render () {
     const { posts } = this.state
 
     return (
-      <div>
+      <div style={{ marginTop: '2%' }}>
         <Grid>
           { posts && posts.map((p, key) => (
             <Row key={key} className='show-grid'>
-              <Col xs={7} md={6} xsOffset={3}>
+              <Col xs={7} md={6}>
                 <Panel bsStyle='primary' id={`collapsible-panel-example-${key}`} defaultExpanded>
                   <Panel.Heading>
                     <Panel.Title toggle>

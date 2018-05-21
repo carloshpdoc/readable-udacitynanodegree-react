@@ -9,8 +9,8 @@ const headers = {
   'Authorization': token
 }
 
-export const get = (bookId) =>
-  fetch(`${api}/books/${bookId}`, { headers })
+export const getPost = (postsId) =>
+  fetch(`${api}/posts/${postsId}`, { headers })
     .then(res => res.json())
     .then(data => data)
 
@@ -20,9 +20,9 @@ export const getAllcategories = () =>
     .then(data => data.categories)
 
 export const getAllcategoriesPost = (category) =>
-  fetch(`${api}/:${category}/posts`, { headers })
+  fetch(`${api}/${category}/posts`, { headers })
     .then(res => res.json())
-    .then(data => data.books)
+    .then(data => data)
 
 export const getAllpost = () =>
   fetch(`${api}/posts`, { headers })
