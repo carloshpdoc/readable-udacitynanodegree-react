@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Panel, Grid, Row, Col, Badge } from 'react-bootstrap'
 import * as API from '../utils/api'
 import moment from 'moment'
+import sortBy from 'sort-by'
 
 class Cards extends Component {
   constructor (props) {
@@ -26,6 +27,7 @@ class Cards extends Component {
 
   render () {
     const { posts } = this.state
+    posts.sort(sortBy('voteScore', 'timestamp'));
 
     return (
       <div style={{ marginTop: '2%' }}>
