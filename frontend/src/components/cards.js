@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
-import { Panel, Grid, Row, Col, Badge, FormGroup, ControlLabel, FormControl} from 'react-bootstrap'
+import { Route, Link, Redirect } from 'react-router-dom'
+import { Panel, Grid, Row, Col, Badge, 
+  FormGroup, ControlLabel, FormControl,
+  ButtonToolbar, ButtonGroup, Glyphicon, Button} from 'react-bootstrap'
 import * as API from '../utils/api'
 import moment from 'moment'
 import sortBy from 'sort-by'
@@ -14,15 +17,9 @@ class Cards extends Component {
     }
   }
 
-  handlerOrder = (e) => {
-    const value = `-${e.target.value}`
-    if(e.target.value === 'timestamp'){
-      this.state.posts.sort(sortBy(e.target.value)) 
-      this.setState({ sortOrder: e.target.value });
-    } else {
-      this.state.posts.sort(sortBy(value)) 
-      this.setState({ sortOrder: value });
-    }
+  handlerOrder = (e) => { 
+    this.state.posts.sort(sortBy(`-${e.target.value}`)) 
+    this.setState({ sortOrder: `-${e.target.value}` });
    }
 
   componentDidMount () {
@@ -56,15 +53,27 @@ class Cards extends Component {
             </FormGroup>
             </Col>
           </Row>
-          { posts && posts.map((p, key) => (  
+          { posts && posts.map((p, key) => (
+           // !p.deleted continue;
             <Row key={key} className='show-grid'>
               <Col xs={7} md={6}>
                 <Panel bsStyle='primary' id={`collapsible-panel-example-${key}`} defaultExpanded>
                   <Panel.Heading>
-                    <Panel.Title toggle>
+                    <Panel.Title>
+                    <Link to={`/${p.category}/${p.id}`}>
                       {p.title}
+                    </Link>
                     </Panel.Title>
                     By: {p.author}
+                    <div style={{float:'right', marginLeft: '0.5%'}}>
+                      <Button bsSize='xsmall' style={{marginRight: '0.5em'}}>
+                        <Glyphicon glyph='chevron-up' />
+                      </Button>
+                        Vote <Badge>{p.voteScore}</Badge>
+                      <Button bsSize='xsmall' style={{marginLeft: '0.5em'}}>
+                        <Glyphicon glyph='chevron-down' />
+                      </Button>
+                    </div>
                   </Panel.Heading>
                   <Panel.Collapse>
                     <Panel.Body>
@@ -72,8 +81,15 @@ class Cards extends Component {
                     </Panel.Body>
                     <Panel.Footer>
                      Comment <Badge>{p.commentCount}</Badge> |
-                     Vote <Badge>{p.voteScore}</Badge> |
-                     Date: {moment(new Date(p.timestamp)).format('L')}
+                     Date: {moment(new Date(p.timestamp)).format('MMMM Do YYYY')}
+                     <div style={{float:'right', marginLeft: '0.5%'}}>
+                      <Button bsSize='xsmall' style={{marginRight: '0.5em'}}>
+                          <Glyphicon glyph='edit' />
+                        </Button>
+                        <Button bsSize='xsmall' style={{marginLeft: '0.5em'}}>
+                          <Glyphicon glyph='trash' />
+                        </Button>
+                      </div>
                     </Panel.Footer>
                   </Panel.Collapse>
                 </Panel>
