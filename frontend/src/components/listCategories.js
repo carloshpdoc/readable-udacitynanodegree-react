@@ -62,7 +62,7 @@ class ListCategories extends Component {
       author: this.state.name,
       category: this.state.select,
     }
-    // console.log('body: ', body);
+
      API.posts(body).then((data) => {
        console.log('data', data)
       setTimeout(function(){ window.location.reload()}, 1000)
@@ -73,9 +73,9 @@ class ListCategories extends Component {
 
   render () {
     const { categories, show } = this.state
-    if (this.state.redirect) {
-      // return <Redirect push to="/" />;
-    }
+    // if (this.state.redirect) {
+    //   return <Redirect push to="/" />;
+    // }
 
     return (
       <div>
