@@ -27,10 +27,10 @@ class Cards extends Component {
 
   render () {
     const { posts } = this.state
-    posts.sort(sortBy('voteScore', 'timestamp'));
+    posts.sort(sortBy('voteScore', 'timestamp'))
 
     return (
-      <div style={{ marginTop: '2%' }}>
+      <div>
         <Grid>
           { posts && posts.map((p, key) => (
             <Row key={key} className='show-grid'>
@@ -40,15 +40,15 @@ class Cards extends Component {
                     <Panel.Title toggle>
                       {p.title}
                     </Panel.Title>
-                    Author: {p.author}
+                    By: {p.author}
                   </Panel.Heading>
                   <Panel.Collapse>
                     <Panel.Body>
                       {p.body}
                     </Panel.Body>
                     <Panel.Footer>
-                     Comment <Badge>{p.commentCount}</Badge> | 
-                     Vote <Badge>{p.voteScore}</Badge> | 
+                     Comment <Badge>{p.commentCount}</Badge> |
+                     Vote <Badge>{p.voteScore}</Badge> |
                      Date: {moment(new Date(p.timestamp)).format('L')}
                     </Panel.Footer>
                   </Panel.Collapse>

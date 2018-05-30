@@ -7,11 +7,16 @@ class FormModal extends Component {
     super(props, context)
 
     this.state = {
-      show: false
+      showOn: false,
     }
   }
 
+  handleClose = () => {
+    this.setState({ showOn: false })
+  }
+
   render () {
+      console.log(this.state.show);
     const popover = (
       <Popover id='modal-popover' title='popover'>
         very popover. such engagement
@@ -21,7 +26,7 @@ class FormModal extends Component {
 
     return (
       <div>
-        <Modal show={this.state.show} onHide={this.handleClose}>
+        <Modal show={this.props.show} onHide={this.handleClose}>
           <Modal.Header closeButton>
             <Modal.Title>Modal heading</Modal.Title>
           </Modal.Header>

@@ -24,15 +24,15 @@ const PostCard = ({postId}) => {
                   <Panel.Title toggle>
                     {p.title}
                   </Panel.Title>
-                Author: {p.author}
+                By: {p.author}
                 </Panel.Heading>
                 <Panel.Collapse>
                   <Panel.Body>
                     {p.body}
                   </Panel.Body>
                   <Panel.Footer>
-                 Comment <Badge>{p.commentCount}</Badge> | 
-                 Vote <Badge>{p.voteScore}</Badge> | 
+                 Comment <Badge>{p.commentCount}</Badge> |
+                 Vote <Badge>{p.voteScore}</Badge> |
                  Date: {moment(new Date(p.timestamp)).format('L')}
                   </Panel.Footer>
                 </Panel.Collapse>

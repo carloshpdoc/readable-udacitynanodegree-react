@@ -1,12 +1,5 @@
 import React, { Component } from 'react'
-import { Navbar, Nav, NavItem,
-  MenuItem, NavDropdown} from 'react-bootstrap'
-
-const styles = {
-  root: {
-    flexGrow: 1
-  }
-}
+import { Navbar } from 'react-bootstrap'
 
 class NavHeader extends Component {
   render () {
@@ -14,9 +7,9 @@ class NavHeader extends Component {
       <div>
         <Navbar>
           <Navbar.Header>
-            <Navbar.Brand>
-              <a href='#home'>Project Readable - Nanodegree React Udacity</a>
-            </Navbar.Brand>
+            <Navbar.Text>
+              Project Readable - Nanodegree React Udacity
+            </Navbar.Text>
           </Navbar.Header>
         </Navbar>
       </div>
