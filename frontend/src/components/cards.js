@@ -60,7 +60,7 @@ class Cards extends Component {
                 <Panel bsStyle='primary' id={`collapsible-panel-example-${key}`} defaultExpanded>
                   <Panel.Heading>
                     <Panel.Title>
-                    <Link to={`/${p.category}/${p.id}`}>
+                    <Link to={`/post/${p.id}`}>
                       {p.title}
                     </Link>
                     </Panel.Title>
